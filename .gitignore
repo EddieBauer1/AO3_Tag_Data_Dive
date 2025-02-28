@@ -1,10 +1,10 @@
 __pycache__/
 .ipynb_checkpoints
-*pyc
+*.pyc
 z_*
 .DS_Store
 
-#Environments
+# Environments
 .env
 .venv
 env/

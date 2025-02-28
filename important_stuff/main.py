@@ -1,3 +1,8 @@
+from important_stuff.datagen import get_decks, store_decks
+from important_stuff.processing import calculate_all_results, store_results, create_dataframe
+from important_stuff.visualizing import make_heatmap
+
+
 def run_project_penney(half_deck_size: int = 26, n_decks: int = 10000, seed: int = 42) -> None:
     """
     Runs Project Penney, automatically running each function.
