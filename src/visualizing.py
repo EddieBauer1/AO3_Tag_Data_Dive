@@ -12,7 +12,7 @@ def make_heatmap(data: pd.DataFrame) -> None:
     Returns:
         None.
     """
-    # mask = np.triu(np.ones_like(a, dtype=bool))
+    # mask = np.triu(np.ones_like(data, dtype=bool))
     # In case I want to cut the heatmap in half
     sns.heatmap(data, annot = True, vmax = 1, vmin = 0, center = 0.5, fmt = ".2f", cmap = 'coolwarm', annot_kws = {"size":11})
     plt.title('Heatmap of Player 2 Win Percentages')

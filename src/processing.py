@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from important_stuff.helpers import PATH_DATA
+from src.helpers import PATH_DATA
 
 def calculate_tricks_score(deck: np.ndarray, player1: list, player2: list) -> tuple:
     """

@@ -1,6 +1,6 @@
-from important_stuff.datagen import get_decks, store_decks
-from important_stuff.processing import calculate_all_results, store_results, create_dataframe
-from important_stuff.visualizing import make_heatmap
+from src.datagen import get_decks, store_decks
+from src.processing import calculate_all_results, store_results, create_dataframe
+from src.visualizing import make_heatmap
 
 
 def run_project_penney(half_deck_size: int = 26, n_decks: int = 10000, seed: int = 42) -> None:
@@ -21,3 +21,5 @@ def run_project_penney(half_deck_size: int = 26, n_decks: int = 10000, seed: int
     store_results(results, "Big_Test_Result")
     data = create_dataframe(results)
     make_heatmap(data)
+
+run_project_penney()
