@@ -2,7 +2,7 @@ Project Penney
 
 This code is intended to run simulations of Penney's Game using generated card decks, then scoring those games using the tricks method while saving both the generated shuffled decks and the game results. Lastly, a heatmap will be created using this date in order to find the optimal choices for Player 2 in response to Player 1's selection.
 
-Everything you need will be in the "important_stuff" folder:
+Everything you need will be in the src folder:
 
     datagen.py contains functions involved in generating data
 
@@ -10,7 +10,7 @@ Everything you need will be in the "important_stuff" folder:
 
     visualizing.py has the function to produce the heatmap
 
-    main.py has the function to run the whole process!
+    run.py has the function to run the whole process!
 
 I've had some annoying issues importing pandas and seaborn on VSCode and Github so I honestly have no idea what's going on there, but the code works perfectly fine on Jupyterhub so hopefully it should be fine.
 

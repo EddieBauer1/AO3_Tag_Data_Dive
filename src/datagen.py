@@ -1,5 +1,5 @@
 import numpy as np
-from important_stuff.helpers import PATH_DATA, debugger_factory
+from src.helpers import PATH_DATA, debugger_factory
 
 
 # Define the half deck size
