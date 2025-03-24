@@ -2,7 +2,6 @@ from src.datagen import get_decks, store_decks
 from src.processing import calculate_all_results, store_results, create_dataframe
 from src.visualizing import make_heatmap
 
-
 def run_project_penney(half_deck_size: int = 26, n_decks: int = 10000, seed: int = 42) -> None:
     """
     Runs Project Penney, automatically running each function.
@@ -16,8 +15,13 @@ def run_project_penney(half_deck_size: int = 26, n_decks: int = 10000, seed: int
         None.
     """
     decks = get_decks(n_decks = n_decks, half_deck_size = half_deck_size, seed = seed)
-    store_decks(decks, "Big_Test_Deck")
+    store_decks(decks, f'{n_decks}_Decks')
     results = calculate_all_results(decks)
-    store_results(results, "Big_Test_Result")
-    data = create_dataframe(results)
-    make_heatmap(data)
+    tricks = results[0]
+    cards = results[1]
+    store_results(tricks, f'{n_decks}_Tricks_Result')
+    store_results(cards, f'{n_decks}_Cards_Result')
+    trick_data = create_dataframe(tricks)
+    make_heatmap(trick_data, "Tricks", n_decks)
+    card_data = create_dataframe(cards)
+    make_heatmap(card_data, "Cards", n_decks)

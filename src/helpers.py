@@ -14,8 +14,6 @@ def debugger_factory(show_args=True) -> Callable:
             t0 = dt.now()
             results = func(*args, **kwargs)
             print(f'{func.__name__} ran for {dt.now() - t0}')
-
             return results
-        
         return wrapper
     return debugger

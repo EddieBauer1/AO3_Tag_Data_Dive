@@ -1,8 +1,7 @@
 import numpy as np
 import pandas as pd
-from src.helpers import PATH_DATA
 
-def calculate_tricks_score(deck: np.ndarray, player1: list, player2: list) -> tuple:
+def calculate_scores(deck: np.ndarray, player1: list, player2: list) -> tuple:
     """
     Calculate score of singular game using tricks method.
     
@@ -14,28 +13,36 @@ def calculate_tricks_score(deck: np.ndarray, player1: list, player2: list) -> tu
     Returns:
         Tuple: contains player1_score (int), player2_score (int), the number of tricks scored by each player after going through the deck of cards.
     """
-    player1_score = 0
-    player2_score = 0
+    player1_tricks_score = 0
+    player2_tricks_score = 0
+    player1_cards_score = 0
+    player2_cards_score = 0
+    cards = 0
     deck_length = len(deck)
     
     i = 0
     while i < deck_length - 2:  # Make sure we don't go out of bounds
         # Check for match for Player 1
         if deck[i:i+3].tolist() == player1:
-            player1_score += 1
+            player1_tricks_score += 1
+            player1_cards_score += cards+3
             i = i+3
+            cards = 0
         # Check for match for Player 2
         elif deck[i:i+3].tolist() == player2:
-            player2_score += 1
+            player2_tricks_score += 1
+            player2_cards_score += cards+3
             i = i+3
+            cards = 0
         # Move on if no match
         else:
             i+=1
-    return player1_score, player2_score
+            cards+=1
+    return player1_tricks_score, player2_tricks_score, player1_cards_score, player2_cards_score
 
 
 
-def collect_tricks_scores(decks: np.ndarray, player1: list, player2: list) -> list:
+def collect_scores(decks: np.ndarray, player1: list, player2: list) -> tuple:
     """
     Score games using tricks method, using every deck contained in "decks".
     
@@ -47,14 +54,17 @@ def collect_tricks_scores(decks: np.ndarray, player1: list, player2: list) -> li
     Returns:
         scores: list of tuples, each one containing player1 and player2 score from a singular game. One tuple for each deck in decks.
     """
-    scores = []
+    tricks = []
+    cards = []
     for deck in decks:
-        scores.append(calculate_tricks_score(deck, player1, player2))
-    return scores
+        player1_tricks, player2_tricks, player1_cards, player2_cards = calculate_scores(deck, player1, player2)
+        tricks.append((player1_tricks, player2_tricks))
+        cards.append((player1_cards, player2_cards))
+    return (tricks, cards)
 
 
 
-def calculate_win_percentage(decks: np.ndarray, player1: list, player2: list) -> float:
+def calculate_win_percentage(decks: np.ndarray, player1: list, player2: list) -> list:
     """
     Goes through array of tuples, then finds percentage of games that player 2 won for that specific combination of player choices.
     
@@ -67,13 +77,16 @@ def calculate_win_percentage(decks: np.ndarray, player1: list, player2: list) ->
         float: decimal representing player 2's win percentage.
     """
     # Collect scores for all games
-    scores = np.array(collect_tricks_scores(decks, player1, player2))
-    
+    scores = collect_scores(decks, player1, player2)
+    tricks = scores[0]
+    cards = scores[1]
+    tricks_scores = np.array(tricks)
+    cards_scores = np.array(cards)
     # Compare scores for player1 and player2 and count the wins for player2
-    player2 = np.sum(scores[:, 1] > scores[:, 0])
-    
-    # Return win percentage for player2
-    return player2/len(scores)
+    player2_tricks = np.sum(tricks_scores[:, 1] > tricks_scores[:, 0])
+    player2_cards = np.sum(cards_scores[:, 1] > cards_scores[:, 0])
+    # Return win percentage for player2 in both scoring options
+    return [player2_tricks/len(tricks), player2_cards/len(cards)]
 
 
 
@@ -87,14 +100,21 @@ def calculate_all_results(decks: np.ndarray) -> list:
     Returns:
         results: List of tuples, each tuple containing player1 and player2's choices, plus win percentage.
     """
-    results = []
+    tricks = []
+    cards = []
     # Every possible choice for each player
-    choices = [[0, 0, 0], [0, 0, 1], [0, 1, 0], [0, 1, 1], [1, 0, 0], [1, 0, 1], [1, 1, 0], [1, 1, 1]]
+    choices = [["B", "B", "B"], ["B", "B", "R"], ["B", "R", "B"], ["B", "R", "R"], ["R", "B", "B"], ["R", "B", "R"], ["R", "R", "B"], ["R", "R", "R"]]
     # Goes through each possible player choice, then finds player 2's  win percentage for that combo. HIGHLY INEFFICIENT, try to optimize later.
     for player1 in choices:
         for player2 in choices:
-            results.append(["".join(map(str, player1)), "".join(map(str, player2)), calculate_win_percentage(decks, player1, player2)])
-    return results
+            if player1 == player2:
+                tricks.append(["".join(map(str, player1)), "".join(map(str, player2)), 0])
+                cards.append(["".join(map(str, player1)), "".join(map(str, player2)), 0])
+            else:
+                win_pct = calculate_win_percentage(decks, player1, player2)
+                tricks.append(["".join(map(str, player1)), "".join(map(str, player2)), win_pct[:1][0]])
+                cards.append(["".join(map(str, player1)), "".join(map(str, player2)), win_pct[1:2][0]])
+    return tricks, cards
 
 
 
@@ -138,6 +158,6 @@ def create_dataframe(data: list) -> pd.DataFrame:
         dataframe (DataFrame): Each row is player 1's choices, and each column is player 2's choices. Each cell is the player 2 win percentage with those choices.
     """
     # create DataFrame 
-    df = pd.DataFrame(data, columns =['Player1', 'Player2', 'Win Pct'])
-    dataframe = df.pivot(index='Player1', columns='Player2', values='Win Pct')
+    df = pd.DataFrame(data, columns =["Opponent's Pick", 'Your Pick', 'Win Pct'])
+    dataframe = df.pivot(index="Opponent's Pick", columns='Your Pick', values='Win Pct')
     return dataframe

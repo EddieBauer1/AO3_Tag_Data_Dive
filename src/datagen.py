@@ -1,5 +1,5 @@
 import numpy as np
-from src.helpers import PATH_DATA, debugger_factory
+from src.helpers import debugger_factory
 
 
 # Define the half deck size
@@ -20,8 +20,8 @@ def get_decks(n_decks: int,
     Returns:
         decks (np.ndarray): 2D array of shape (n_decks, num_cards), each row is a shuffled deck.
     """
-    # Initialize the deck (half 0s and half 1s for simplicity, adjust as needed)
-    init_deck = [0] * half_deck_size + [1] * half_deck_size
+    # Initialize the deck (half Bs and half Rs for simplicity, adjust as needed)
+    init_deck = ["B"] * half_deck_size + ["R"] * half_deck_size
     decks = np.tile(init_deck, (n_decks, 1))  # Create `n_decks` identical decks
     
     # Random number generator (RNG)
