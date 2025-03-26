@@ -22,6 +22,6 @@ def run_project_penney(half_deck_size: int = 26, n_decks: int = 10000, seed: int
     store_results(tricks, f'{n_decks}_Tricks_Result')
     store_results(cards, f'{n_decks}_Cards_Result')
     trick_data = create_dataframe(tricks)
-    make_heatmap(trick_data, "Tricks", n_decks)
+    make_heatmap(trick_data, "Tricks", n_decks, seed)
     card_data = create_dataframe(cards)
-    make_heatmap(card_data, "Cards", n_decks)
+    make_heatmap(card_data, "Cards", n_decks, seed)
