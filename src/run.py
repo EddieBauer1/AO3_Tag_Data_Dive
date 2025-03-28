@@ -14,13 +14,20 @@ def run_project_penney(half_deck_size: int = 26, n_decks: int = 10000, seed: int
     Returns:
         None.
     """
+    # Create and store decks
     decks = get_decks(n_decks = n_decks, half_deck_size = half_deck_size, seed = seed)
     store_decks(decks, f'{n_decks}_Decks')
+
+    # Play Penney's Game with the decks, record player 2 win percentages for every choice in every deck
     results = calculate_all_results(decks)
+
+    # Save results, specify number of decks and scoring type
     tricks = results[0]
     cards = results[1]
     store_results(tricks, f'{n_decks}_Tricks_Result')
     store_results(cards, f'{n_decks}_Cards_Result')
+    
+    # Create and save heatmaps
     trick_data = create_dataframe(tricks)
     make_heatmap(trick_data, "Tricks", n_decks, seed)
     card_data = create_dataframe(cards)
