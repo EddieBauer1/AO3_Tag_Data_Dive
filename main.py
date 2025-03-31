@@ -1,4 +1,4 @@
-from src.run import run_project_penney
+from src.run import run_project_penney, append
 
 if __name__ == "__main__":
     # Ask customization options
@@ -8,3 +8,10 @@ if __name__ == "__main__":
 
     # Run the project with the user inputs
     run_project_penney(half_deck_size = half_deck_size, n_decks = n_decks, seed = seed)
+    check = (input("Would you like to append to this result? (Y/N) "))
+    if check == "Y":
+        new_decks = int(input("How many decks? "))
+        append(original_decks = n_decks, half_deck_size = half_deck_size, new_decks = new_decks, seed = seed)
+        print("Thanks for playing!")
+    else:
+        print("Thanks for playing!")

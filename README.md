@@ -14,4 +14,4 @@ Everything you need will be in the src folder:
 
     visualizing.py has the make_heatmap function, which produces and saves the heatmap with customized names according to deck size, scoring method, and seed.
 
-    run.py contains the run_project_penney function, which runs the whole process with input of deck size, number of decks, and seed.
+    run.py contains the run_project_penney function, which runs the whole process with input of deck size, number of decks, and seed. It also contains the append function, which adds new decks after the initial game is finished.

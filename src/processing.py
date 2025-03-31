@@ -145,7 +145,7 @@ def load_results(filename: str) -> np.ndarray:
         np.ndarray: 2D array, each row is a list of player1 choice, player2 choice, and player2 win percentage.
     """
     # Loads npy file from data folder
-    return np.load(f"data/{filename}.npy")
+    return np.load(f"data/{filename}.npy").tolist()
 
 
 
