@@ -134,7 +134,7 @@ def store_results(results: list, filename: str) -> None:
 
 
 
-def load_results(filename: str) -> np.ndarray:
+def load_results(filename: str) -> list:
     """
     Load list of player 2 win percentages for each combo from a .npy file.
     
