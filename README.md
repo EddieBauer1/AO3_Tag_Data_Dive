@@ -1,17 +1,17 @@
 Project Penney
 
-This code is intended to run simulations of Penney's Game using generated card decks, then scoring those games using the tricks method while saving both the generated shuffled decks and the game results. Lastly, a heatmap will be created using this date in order to find the optimal choices for Player 2 in response to Player 1's selection.
+This code runs simulations of the Humble-Nishiyama Randomness Game, a version of Penney's Game that consists of two players selecting from a deck of playing cards a sequence of three cards - colored black or red - instead of flipping a coin. The results of these simulated games are scored using the tricks and cards methods while saving both the generated shuffled decks and the game results. Lastly, a heatmap will be created using this data in order to find the optimal choices for Player 2 in response to Player 1's selection.
+
+The game should run by asking the user for the number of decks, the deck size, and the randomness seed, then using these customization options to run the game simulations.
 
 Everything you need will be in the src folder:
 
-    datagen.py contains functions involved in generating data
+    helpers.py contains the debugger_factory function.
 
-    processing.py contains the functions that calculate scoring, process the data, etc.
+    datagen.py contains functions involved in generating, storing, and retrieving deck data.
 
-    visualizing.py has the function to produce the heatmap
+    processing.py contains the functions that simulates games, calculates the scoring, and saves and loads the results.
 
-    run.py has the function to run the whole process!
+    visualizing.py has the make_heatmap function, which produces and saves the heatmap with customized names according to deck size, scoring method, and seed.
 
-I've had some annoying issues importing pandas and seaborn on VSCode and Github so I honestly have no idea what's going on there, but the code works perfectly fine on Jupyterhub so hopefully it should be fine.
-
-Also, some of the code is admittedly rather inefficient; I'd recommend against simulating a massive number of decks unless you want the code running for a while. The stuff in the data folder holds the results from running 100,000 decks and the files already seem rather large.
+    run.py contains the run_project_penney function, which runs the whole process with input of deck size, number of decks, and seed.

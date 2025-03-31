@@ -129,6 +129,7 @@ def store_results(results: list, filename: str) -> None:
     Returns:
         None.
     """
+    # Save result as a npy file with customized name
     np.save(f"data/{filename}.npy", results)
 
 
@@ -143,6 +144,7 @@ def load_results(filename: str) -> np.ndarray:
     Returns:
         np.ndarray: 2D array, each row is a list of player1 choice, player2 choice, and player2 win percentage.
     """
+    # Loads npy file from data folder
     return np.load(f"data/{filename}.npy")
 
 
@@ -157,7 +159,7 @@ def create_dataframe(data: list) -> pd.DataFrame:
     Returns:
         dataframe (DataFrame): Each row is player 1's choices, and each column is player 2's choices. Each cell is the player 2 win percentage with those choices.
     """
-    # create DataFrame 
+    # Create DataFrame 
     df = pd.DataFrame(data, columns =["Opponent's Pick", 'Your Pick', 'Win Pct'])
     dataframe = df.pivot(index="Opponent's Pick", columns='Your Pick', values='Win Pct')
     return dataframe
