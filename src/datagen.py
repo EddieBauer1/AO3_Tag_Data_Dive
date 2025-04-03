@@ -1,7 +1,6 @@
 import numpy as np
 from src.helpers import debugger_factory
 
-
 # Define the half deck size
 HALF_DECK_SIZE = 26  # Adjust this depending on the deck structure
 

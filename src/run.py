@@ -20,7 +20,7 @@ def run_project_penney(half_deck_size: int = 26, n_decks: int = 10000, seed: int
 
     # Play Penney's Game with the decks, record player 2 win percentages for every choice in every deck
     results = calculate_all_results(decks)
-
+    
     # Save results, specify number of decks and scoring type
     tricks = results[0]
     cards = results[1]
@@ -28,11 +28,8 @@ def run_project_penney(half_deck_size: int = 26, n_decks: int = 10000, seed: int
     store_results(cards, f'{n_decks}_Cards_Result')
 
     # Create and save heatmaps
-    trick_data = create_dataframe(tricks)
-    make_heatmap(trick_data, "Tricks", n_decks, seed)
-    card_data = create_dataframe(cards)
-    make_heatmap(card_data, "Cards", n_decks, seed)
-
+    make_heatmap(tricks, "Tricks", n_decks, seed)
+    make_heatmap(cards, "Cards", n_decks, seed)
 
 def append(original_decks: int = 10000, seed: int = 42, half_deck_size: int = 26, new_decks: int = 100) -> None:
     """
@@ -62,8 +59,8 @@ def append(original_decks: int = 10000, seed: int = 42, half_deck_size: int = 26
     appended_cards = []
     i = 0
     while i < len(original_cards):
-        appended_cards.append([original_cards[i][0], original_cards[i][1], (float(original_cards[i][2])*original_decks + float(cards[i][2])*new_decks)/(original_decks + new_decks)])
-        appended_tricks.append([original_tricks[i][0], original_tricks[i][1], (float(original_tricks[i][2])*original_decks + float(tricks[i][2])*new_decks)/(original_decks + new_decks)])
+        appended_cards.append([original_cards[i][0], original_cards[i][1], (int(original_cards[i][2]) + cards[i][2]), (int(original_cards[i][3]) + cards[i][3])])
+        appended_tricks.append([original_tricks[i][0], original_tricks[i][1], (int(original_tricks[i][2]) + tricks[i][2]), (int(original_tricks[i][3]) + tricks[i][3])])
         i+=1
 
     # Store new results of the appended decks
@@ -71,7 +68,5 @@ def append(original_decks: int = 10000, seed: int = 42, half_deck_size: int = 26
     store_results(cards, f'{original_decks+new_decks}_Cards_Result')
 
     # Create and save heatmaps of appended decks
-    trick_data = create_dataframe(appended_tricks)
-    make_heatmap(trick_data, "Tricks", original_decks+new_decks, seed)
-    card_data = create_dataframe(appended_cards)
-    make_heatmap(card_data, "Cards", original_decks+new_decks, seed)
+    make_heatmap(appended_tricks, "Tricks", original_decks+new_decks, seed)
+    make_heatmap(appended_cards, "Cards", original_decks+new_decks, seed)

@@ -2,7 +2,7 @@ Project Penney
 
 This code runs simulations of the Humble-Nishiyama Randomness Game, a version of Penney's Game that consists of two players selecting from a deck of playing cards a sequence of three cards - colored black or red - instead of flipping a coin. The results of these simulated games are scored using the tricks and cards methods while saving both the generated shuffled decks and the game results. Lastly, a heatmap will be created using this data in order to find the optimal choices for Player 2 in response to Player 1's selection.
 
-The game should run by asking the user for the number of decks, the deck size, and the randomness seed, then using these customization options to run the game simulations.
+The game should run by asking the user for the number of decks and the randomness seed, then using these customization options to run the game simulations. After the initial simulation, the user will be asked if they want to append more decks.
 
 Everything you need will be in the src folder:
 
