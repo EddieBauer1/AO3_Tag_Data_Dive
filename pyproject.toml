@@ -5,10 +5,10 @@ description = "Create visualizations for AO3 tags using AO3 data"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    dash >= "2.16.1",
-    plotly >= "5.22.0",
-    pandas >= "2.2.2",
-    requests >= "2.31.0",
-    numpy >= "1.26.4"
+    "dash>=2.16.1",
+    "plotly>=5.22.0",
+    "pandas>=2.2.2",
+    "requests>=2.31.0",
+    "numpy>=1.26.4"
 ]
 
