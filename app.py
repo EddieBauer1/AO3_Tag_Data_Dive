@@ -8,7 +8,7 @@ from src.data_prep import check_if_exists, import_data, csv_to_db, preprocess, s
 if not check_if_exists():
     print("Importing Data...")
     import_data()
-    print("Creating SQL database...")
+    print("Creating SQL Database...")
     csv_to_db()
     print("Preprocessing...")
     preprocess()
