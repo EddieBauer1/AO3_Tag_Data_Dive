@@ -13,14 +13,14 @@ python app.py
 
 If this is the first time running the project, the AO3 data download process will commence, with messages updating the user of the progress:
 
-- "Importing Data..." indicates the program is downloading the data from the AO3 site, then extracting the data into the "data" folder. After this step, the user should see:
+- "Importing Data..." indicates the program is downloading the data from the AO3 site, then extracting the data into the \data folder. After this step, the user should see:
   - 2021_stats.zip 
   - tags-20210226.csv
   - works-20210226.csv 
 
 These CSVs contain the information for each tag and work on AO3 at the time of the published data dump - February 26th, 2021. "Downloading Completed" indicates that this process is finished.
 
-- "Creating SQL Database..." shows that the fanfic.db database is being created in the "data" folder from the CSV data. The database will contain two tables, "works" and "tags" - one for each downloaded CSV. This will allow for faster processing once completed.
+- "Creating SQL Database..." shows that the fanfic.db database is being created in the \data folder from the CSV data. The database will contain two tables, "works" and "tags" - one for each downloaded CSV. This will allow for faster processing once completed.
 
 - "Preprocessing..." means the program is deleting any tags with fewer than five associated works (these tags are unnamed in the original AO3 dataset, thus useless for the project), and adding an ID to each work in the "work" table by autoincrementing.
 
