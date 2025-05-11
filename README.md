@@ -54,8 +54,8 @@ If all else fails, the user should try looking up the official tag on AO3.
 
 ## Results
 The user is given three graphs indicating different statistics about the works including the searched tag: 
-- A bar graph showing works created by year 
-- A bar graph showing works separated by word count
+- A bar graph showing works created by year. 
+- A bar graph showing works organized by word count.
 - A pie chart showing the percentage of works using that tag that are completed. 
 
 Each graphic also has relevant statistics that may help the user understand the dataset better, such as "Total Works", "Average Word Count per Work", and "Number of Complete Works". Overall, these graphics give the user a simplified view of the often massive amounts of fanworks.
