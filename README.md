@@ -87,5 +87,8 @@ The project consists of three files: data_prep.py, processing.py, and app.py.
 - `app.py` creates and runs the interactive Dash dashboard that users see in the browser.
   - `update_dashboard(n_clicks, tagname)` returns a tuple containing the updated graphs and statistics to be displayed on the dashboard based on the searched tag.
 
+## Writeup
+For additional information, read the writeup included in the `/writeup` folder
+
 
 
