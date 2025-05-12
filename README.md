@@ -1,6 +1,10 @@
 # AO3 Data Dive
 AO3 Data Dive is a web dashboard for analyzing fanfiction data from Archive of Our Own (AO3). Users can input any AO3 tag - character, relationship, fandom, or trope - and view visual summaries of fanworks involving that tag, using data from AO3's official Selective Data Dump for Fan Statisticians (published February 26, 2021).
 
+## Prerequisites
+- Python 3.12 or higher installed
+- Git installed
+
 ## Installation
 Enter `git clone https://github.com/EddieBauer1/AO3_Tag_Data_Dive.git` into Powershell when in desired directory to clone the repository.
 
