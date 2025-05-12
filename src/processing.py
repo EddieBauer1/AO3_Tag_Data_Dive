@@ -183,10 +183,10 @@ def sort_completion() -> pd.DataFrame:
 def autocorrect(tagname: str) -> list:
     """
     Find the ten most used tags that contain the given tag name somewhere within their name,
-    intended to find tags similar to the one the user inputed.
+    intended to find tags similar to the one the user looked up.
     
     Parameters:
-        tagname (str): Name of the tag that user inputed.
+        tagname (str): Name of the tag that user looked up.
     
     Returns:
         close_tags['name'].tolist() (list): List of ten most used tags containing "tagname"

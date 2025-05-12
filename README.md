@@ -17,7 +17,7 @@ To run the project, enter:
 
 `python app.py`
 
-If this is the first time running the project, the AO3 data download and preparation process will commence, with messages updating the user of the progress:
+The dataset is too large to include on Github so if this is the first time running the project, the AO3 data download and preparation process will commence, with messages updating the user of the progress:
 
 - `Importing Data...` indicates the program is downloading the data from the AO3 site, then extracting the data into the `/data` folder. After this step, the user should see:
   - `2021_stats.zip` 
@@ -61,6 +61,8 @@ The user is given three graphs indicating different statistics about the works i
 - A bar graph showing works created by year. 
 - A bar graph showing works organized by word count.
 - A pie chart showing the percentage of works using that tag that are completed. 
+
+Note that because the dataset was released in February 2021, most tags will see a sharp drop in usage from 2020 to 2021.
 
 Each graphic also has relevant statistics that may help the user understand the dataset better, such as "Total Works", "Average Word Count per Work", and "Number of Complete Works". Overall, these graphics give the user a simplified view of the often massive amounts of fanworks.
 
