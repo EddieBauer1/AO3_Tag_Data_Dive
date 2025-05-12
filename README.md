@@ -6,7 +6,7 @@ Enter `git clone https://github.com/EddieBauer1/AO3_Tag_Data_Dive.git` into Powe
 
 Once download is completed, enter `cd AO3_Tag_Data_Dive` to enter the project directory.
 
-Install the necessary dependencies with `pip install -r requirements.txt`.
+Install the necessary dependencies with `pip install . --prefer-binary`.
 
 ## Starting Up
 To run the project, enter:
