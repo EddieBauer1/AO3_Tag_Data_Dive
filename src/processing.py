@@ -72,8 +72,8 @@ def get_work_data(tagname: str) -> pd.DataFrame:
 
 def create_master_table(tagname: str) -> pd.DataFrame:
     """
-    Add creation_year column from creation_date,
-    and convert DataFrame of works containing given tag into SQL table "selected works".
+    Adds creation_year column from creation_date,
+    and converts DataFrame of works containing given tag into SQL table "selected_works".
     
     Parameters:
         tagname (str): Name of the tag, as found in the tags table.

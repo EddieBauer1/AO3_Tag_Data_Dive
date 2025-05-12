@@ -31,7 +31,7 @@ If this is the first time running the project, the AO3 data download and prepara
 Finally, the user will be given an address on which the dashboard is running. Copy and paste the `http://...` address into a web browser to access the dashboard.
 
 ## Usage Tips
-To search up a tag used on AO3, enter the desired tag into the search and click the `Analyze` button. Searchable tags include:
+To search up a tag used on AO3, enter the desired tag into the search and click the `Analyze` button. The program does have occasional issues with case sensitivity, so make sure to capitalize the first letter of every word, as shown in the example tags below. Searchable tags include:
 - Characters (Harry Potter, Rey (Star Wars), etc.)
 - Fandoms (Harry Potter - J. K. Rowling, Star Wars - All Media Types, etc.) 
 - Relationships (Harry Potter/Ginny Weasley, Padmé Amidala/Anakin Skywalker) 
@@ -60,6 +60,26 @@ The user is given three graphs indicating different statistics about the works i
 
 Each graphic also has relevant statistics that may help the user understand the dataset better, such as "Total Works", "Average Word Count per Work", and "Number of Complete Works". Overall, these graphics give the user a simplified view of the often massive amounts of fanworks.
 
+## Project Structure
+The project consists of three files: data_prep.py, processing.py, and app.py.
+- `data_prep.py` is in the `/src` folder, and contains the functions necessary to download and prepare the AO3 data:
+  - `import_data()` automatically downloads and extracts the CSV files from AO3 if they are not already in the `/data` folder.
+  - `csv_to_db()` creates the `fanfic.db` database and converts the CSV files into SQL tables.
+  - `preprocess()` does necessary preprocessing steps on the `works` and `tags` SQL tables.
+  - `split_tags()` creates the `work_tag_pairs` SQL table, splitting the tags column in the `works` table into individual rows.
+  - `check_if_exists()` checks that all data necessary for the project exists.
+  - `data_prep_process()` runs the data preparation process in order and gives feedback.
+- `processing.py` also is in the `/src` folder, and contains the functions used to sort, organize, and filter data from the user input.
+  - `find_tag(tagname: str)` returns the tag ID of the given tag name.
+  - `find_works(tagname: str)` returns a DataFrame of all work IDs paired with the given tag name in the `work_tag_pairs` SQL table.
+  - `get_work_data(tagname: str)` returns a DataFrame of the work data of the work IDs found by `find_works()`.
+  - `create_master_table(tagname: str)` converts the DataFrame of works containing given tag into SQL table `selected_works` and returns a cleaned version of the DataFrame.
+  - `sort_years()` returns a DataFrame of the works in `selected_works` SQL table sorted by year.
+  - `sort_word_counts()` returns a DataFrame of the works in `selected_works` SQL table sorted by preset word count ranges.
+  - `sort_completion()` returns a DataFrame of the works in `selected_works` SQL table sorted by completion.
+  - `autocorrect(tagname: str)` returns a list of the ten most used tags in the `tags` SQL table that contain `tagname` within their name.
+- `app.py` creates and runs the interactive Dash dashboard that users see in the browser.
+  - `update_dashboard(n_clicks, tagname)` returns a tuple containing the updated graphs and statistics to be displayed on the dashboard based on the searched tag.
 
 
 
